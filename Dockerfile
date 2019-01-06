@@ -29,3 +29,4 @@ CMD set +o pipefail
 CMD yes | android-sdk-linux/tools/bin/sdkmanager --licenses
 CMD set -o pipefail
 
+CMD echo "this is CI/CD iamge"
