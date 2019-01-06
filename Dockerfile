@@ -23,7 +23,7 @@ CMD echo y | android-sdk-linux/tools/bin/sdkmanager "build-tools;${ANDROID_BUILD
 
 CMD echo 'ANDROID_HOME=$PWD/android-sdk-linux' >> ~/.bashrc
 CMD echo 'PATH=$PATH:$PWD/android-sdk-linux/platform-tools/' >> ~/.bashrc
-source ~/.bashrc
+CMD source ~/.bashrc
 
 CMD set +o pipefail
 CMD yes | android-sdk-linux/tools/bin/sdkmanager --licenses
