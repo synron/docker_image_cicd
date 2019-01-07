@@ -8,6 +8,7 @@ WORKDIR /opt/
 RUN apt-get update -y && \
     apt-get install -y git wget vim tree unzip tar && \
     apt-get install -y lib32stdc++6 lib32z1 && \
+    mkdir -p ~/.m2/ mkdir -p ~/.gradle && mkdir -p ~/.android && \
     ANDROID_COMPILE_SDK="28" && \
     ANDROID_BUILD_TOOLS="28.0.2" && \
     ANDROID_SDK_TOOLS="4333796" && \
