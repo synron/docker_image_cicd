@@ -34,7 +34,7 @@ RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/s
     apk add glibc-2.28-r0.apk && \
     rm -f glibc-2.28-r0.apk*
     
-RUN mkdir -p /etc/docker&& \
+RUN mkdir -p /etc/docker && \
     echo '{ "registry-mirrors" : [ "https://migmfoxa.mirror.aliyuncs.com" ] }' > /etc/docker/daemon.json;
 
 
