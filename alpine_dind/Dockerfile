@@ -7,7 +7,7 @@ WORKDIR /opt
 
 RUN apk update
 
-RUN apk add --no-cache ca-certificates wget \
+RUN apk add --no-cache ca-certificates wget git vim \
     curl bash tree tzdata unzip
 RUN mkdir -p /opt && cd /opt && mkdir -p ~/.m2
 
