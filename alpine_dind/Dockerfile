@@ -3,6 +3,8 @@ FROM docker:edge
 
 MAINTAINER Mr.Fan fzm@synron.cn
 
+WORKDIR /opt
+
 RUN apk update
 
 RUN apk add --no-cache ca-certificates wget \
@@ -21,7 +23,7 @@ RUN ANDROID_COMPILE_SDK="28" && \
     wget -q -O settings.xml ${MS_URL} && \mv -f settings.xml ~/.m2/ && \
     URL_ANDROID_SDK=https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_TOOLS}.zip && \
     wget -q -O android-sdk.zip ${URL_ANDROID_SDK} && mkdir -p android-sdk-linux && \
-    unzip -q -o -d android-sdk-linux android-sdk.zip && \rm -f android-sdk.zip && cd /opt && ls && \
+    unzip -q -o -d android-sdk-linux android-sdk.zip && \rm -f android-sdk.zip && \
     echo y | android-sdk-linux/tools/bin/sdkmanager "platforms;android-${ANDROID_COMPILE_SDK}" >/dev/null && \
     echo y | android-sdk-linux/tools/bin/sdkmanager "platform-tools" >/dev/null && \
     echo y | android-sdk-linux/tools/bin/sdkmanager "build-tools;${ANDROID_BUILD_TOOLS}" >/dev/null && \
