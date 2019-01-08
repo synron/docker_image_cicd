@@ -30,8 +30,8 @@ RUN MAVEN_VERSION=3.5.4 && \
 
 #安装 AndroidSDK
 RUN apk add --no-cache gcc g++ libstdc++
-RUN mkdir /opt && cd /opt && \
-    mkdir -p ~/.m2/ mkdir -p ~/.gradle && mkdir -p ~/.android && \
+RUN mkdir -p /opt && cd /opt && \
+    mkdir -p ~/.m2 && mkdir -p ~/.gradle && \
     ANDROID_COMPILE_SDK="28" && \
     ANDROID_BUILD_TOOLS="28.0.2" && \
     ANDROID_SDK_TOOLS="4333796" && \
