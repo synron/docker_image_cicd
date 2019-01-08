@@ -18,10 +18,10 @@ RUN ANDROID_COMPILE_SDK="28" && \
     ANDROID_BUILD_TOOLS="28.0.2" && \
     ANDROID_SDK_TOOLS="4333796" && \
     MS_URL=https://raw.githubusercontent.com/synron/docker_images/master/settings.xml && \
-    wget --output-document=settings.xml ${MS_URL} && \mv -f settings.xml ~/.m2/ && \
+    wget -q -O settings.xml ${MS_URL} && \mv -f settings.xml ~/.m2/ && \
     URL_ANDROID_SDK=https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_TOOLS}.zip && \
-    wget --output-document=android-sdk.zip ${URL_ANDROID_SDK} && mkdir -p android-sdk-linux && \
-    unzip -d android-sdk-linux android-sdk.zip && ls && \rm -f android-sdk.zip && ls && \
+    wget -q -O android-sdk.zip ${URL_ANDROID_SDK} && mkdir -p android-sdk-linux && \
+    unzip -q -o -d android-sdk-linux android-sdk.zip && ls && \rm -f android-sdk.zip && ls && \
     echo y | android-sdk-linux/tools/bin/sdkmanager "platforms;android-${ANDROID_COMPILE_SDK}" >/dev/null && \
     echo y | android-sdk-linux/tools/bin/sdkmanager "platform-tools" >/dev/null && \
     echo y | android-sdk-linux/tools/bin/sdkmanager "build-tools;${ANDROID_BUILD_TOOLS}" >/dev/null && \
@@ -29,14 +29,14 @@ RUN ANDROID_COMPILE_SDK="28" && \
     
 #安装Maven
 RUN MAVEN_VERSION=3.5.4 && \
-    wget http://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz && \
+    wget -q http://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz && \
     tar -zxvf apache-maven-$MAVEN_VERSION-bin.tar.gz && \
     rm apache-maven-$MAVEN_VERSION-bin.tar.gz && \
     mv apache-maven-$MAVEN_VERSION /usr/lib/maven
 
 
 #安装 java
-RUN wget --header "Cookie: oraclelicense=accept-securebackup-cookie" https://download.oracle.com/otn-pub/java/jdk/8u191-b12/2787e4a523244c269598db4e85c51e0c/jdk-8u191-linux-x64.tar.gz
+RUN wget -q --header "Cookie: oraclelicense=accept-securebackup-cookie" https://download.oracle.com/otn-pub/java/jdk/8u191-b12/2787e4a523244c269598db4e85c51e0c/jdk-8u191-linux-x64.tar.gz
 RUN tar -xzvf jdk-8u191-linux-x64.tar.gz -C /usr/local/ && \
     rm -f jdk-8u191-linux-x64.tar.gz*
 
