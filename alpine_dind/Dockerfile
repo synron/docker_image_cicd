@@ -8,26 +8,11 @@ WORKDIR /opt
 RUN apk update
 
 RUN apk add --no-cache ca-certificates wget \
-    curl bash tree tzdata unzip gcc g++ libstdc++
-RUN mkdir -p /opt && cd /opt && \
-    mkdir -p ~/.m2 && mkdir -p ~/.gradle
+    curl bash tree tzdata unzip
+RUN mkdir -p /opt && cd /opt && mkdir -p ~/.m2
 
 #解决时区错乱的问题
 RUN cp -rf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
- 
-#安装 AndroidSDK
-RUN ANDROID_COMPILE_SDK="28" && \
-    ANDROID_BUILD_TOOLS="28.0.2" && \
-    ANDROID_SDK_TOOLS="4333796" && \
-    MS_URL=https://raw.githubusercontent.com/synron/docker_images/master/settings.xml && \
-    wget -q -O settings.xml ${MS_URL} && \mv -f settings.xml ~/.m2/ && \
-    URL_ANDROID_SDK=https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_TOOLS}.zip && \
-    wget -q -O android-sdk.zip ${URL_ANDROID_SDK} && mkdir -p android-sdk-linux && \
-    unzip -q -o -d android-sdk-linux android-sdk.zip && \rm -f android-sdk.zip && \
-    echo y | android-sdk-linux/tools/bin/sdkmanager "platforms;android-${ANDROID_COMPILE_SDK}" >/dev/null && \
-    echo y | android-sdk-linux/tools/bin/sdkmanager "platform-tools" >/dev/null && \
-    echo y | android-sdk-linux/tools/bin/sdkmanager "build-tools;${ANDROID_BUILD_TOOLS}" >/dev/null && \
-    yes | android-sdk-linux/tools/bin/sdkmanager --licenses
     
 #安装Maven
 RUN MAVEN_VERSION=3.5.4 && \
@@ -51,10 +36,9 @@ RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/s
 
 ENV JAVA_HOME /usr/local/jdk1.8.0_191
 ENV MAVEN_HOME /usr/lib/maven
-ENV ANDROID_HOME /opt/android-sdk-linux
-ENV PATH $PATH:$JAVA_HOME/bin:$MAVEN_HOME/bin:${ANDROID_HOME}/platform-tools/
+ENV PATH $PATH:$JAVA_HOME/bin:$MAVEN_HOME/bin
 
-VOLUME ["~/.m2/", "~/.gradle/"]
+VOLUME ["~/.m2/"]
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["sh"]
