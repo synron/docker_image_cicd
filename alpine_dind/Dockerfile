@@ -51,8 +51,7 @@ ENV MAVEN_HOME /usr/lib/maven
 ENV ANDROID_HOME /opt/android-sdk-linux
 ENV PATH $PATH:$JAVA_HOME/bin:$MAVEN_HOME/bin:${ANDROID_HOME}/platform-tools/
 
-VOLUME ["~/.m2", "~/.m2"]
-VOLUME ["~/.gradle", "~/.gradle"]
+VOLUME ["~/.m2/", "~/.gradle/"]
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["sh"]
