@@ -29,7 +29,8 @@ RUN MAVEN_VERSION=3.5.4 && \
     mv apache-maven-$MAVEN_VERSION /usr/lib/maven
 
 #安装 AndroidSDK
-RUN  mkdir /opt && cd /opt && \
+RUN apk add --no-cache gcc g++ libstdc++
+RUN mkdir /opt && cd /opt && \
     mkdir -p ~/.m2/ mkdir -p ~/.gradle && mkdir -p ~/.android && \
     ANDROID_COMPILE_SDK="28" && \
     ANDROID_BUILD_TOOLS="28.0.2" && \
@@ -49,6 +50,9 @@ ENV JAVA_HOME /usr/local/jdk1.8.0_191
 ENV MAVEN_HOME /usr/lib/maven
 ENV ANDROID_HOME /opt/android-sdk-linux
 ENV PATH $PATH:$JAVA_HOME/bin:$MAVEN_HOME/bin:${ANDROID_HOME}/platform-tools/
+
+VOLUME ["~/.m2", "~/.m2"]
+VOLUME ["~/.gradle", "~/.gradle"]
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["sh"]
