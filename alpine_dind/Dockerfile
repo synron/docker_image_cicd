@@ -6,7 +6,7 @@ MAINTAINER Mr.Fan fzm@synron.cn
 RUN apk update
 
 RUN apk add --no-cache ca-certificates wget && \
-    apk add --no-cache curl bash tree tzdata && \
+    apk add --no-cache curl bash tree tzdata
 
 #安装 java
 RUN wget --header "Cookie: oraclelicense=accept-securebackup-cookie" https://download.oracle.com/otn-pub/java/jdk/8u191-b12/2787e4a523244c269598db4e85c51e0c/jdk-8u191-linux-x64.tar.gz
