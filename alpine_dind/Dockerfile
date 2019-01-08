@@ -33,6 +33,9 @@ RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/s
     wget -q https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.28-r0/glibc-2.28-r0.apk && \
     apk add glibc-2.28-r0.apk && \
     rm -f glibc-2.28-r0.apk*
+    
+RUN mkdir -p /etc/docker&& \
+    echo '{ "registry-mirrors" : [ "https://migmfoxa.mirror.aliyuncs.com" ] }' > /etc/docker/daemon.json;
 
 
 ENV JAVA_HOME /usr/local/jdk1.8.0_191
