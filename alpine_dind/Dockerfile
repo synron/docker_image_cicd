@@ -17,7 +17,7 @@ RUN cp -rf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 RUN ANDROID_COMPILE_SDK="28" && \
     ANDROID_BUILD_TOOLS="28.0.2" && \
     ANDROID_SDK_TOOLS="4333796" && \
-    MS_URL=https://raw.githubusercontent.com/synron/docker_image_cicd/master/settings.xml && \
+    MS_URL=https://raw.githubusercontent.com/synron/docker_images/master/settings.xml && \
     wget --output-document=settings.xml ${MS_URL} && \mv -f settings.xml ~/.m2/ && \
     URL_ANDROID_SDK=https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_TOOLS}.zip && \
     wget --output-document=android-sdk.zip ${URL_ANDROID_SDK} && mkdir -p android-sdk-linux && \
