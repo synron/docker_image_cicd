@@ -17,14 +17,14 @@ RUN cp -rf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 #安装Maven
 RUN MAVEN_VERSION=3.5.4 && \
     wget -q http://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz && \
-    tar -zxvf apache-maven-$MAVEN_VERSION-bin.tar.gz && \
+    tar -zxf apache-maven-$MAVEN_VERSION-bin.tar.gz && \
     rm apache-maven-$MAVEN_VERSION-bin.tar.gz && \
     mv apache-maven-$MAVEN_VERSION /usr/lib/maven
 
 
 #安装 java
 RUN wget -q --header "Cookie: oraclelicense=accept-securebackup-cookie" https://download.oracle.com/otn-pub/java/jdk/8u191-b12/2787e4a523244c269598db4e85c51e0c/jdk-8u191-linux-x64.tar.gz
-RUN tar -xzvf jdk-8u191-linux-x64.tar.gz -C /usr/local/ && \
+RUN tar -xzf jdk-8u191-linux-x64.tar.gz -C /usr/local/ && \
     rm -f jdk-8u191-linux-x64.tar.gz*
 
 #安装 glibc
