@@ -15,23 +15,10 @@ RUN cp -rf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 #安装 java
 RUN wget -q --header "Cookie: oraclelicense=accept-securebackup-cookie" https://download.oracle.com/otn-pub/java/jdk/8u191-b12/2787e4a523244c269598db4e85c51e0c/jdk-8u191-linux-x64.tar.gz
-RUN tar -xzf jdk-8u191-linux-x64.tar.gz -C /usr/local/ && \
-    rm -f jdk-8u191-linux-x64.tar.gz* && \
-    cd /usr/local/jdk1.8.0_191 && \
-    rm /jre/bin/jjs && \
-    rm /jre/bin/keytool && \
-    rm /jre/bin/orbd && \
-    rm /jre/bin/pack200 && \
-    rm /jre/bin/policytool && \
-    rm /jre/bin/rmid && \
-    rm /jre/bin/rmiregistry && \
-    rm /jre/bin/servertool && \
-    rm /jre/bin/tnameserv && \
-    rm /jre/bin/unpack200 && \
-    rm /jre/lib/ext/nashorn.jar && \
-    rm /jre/lib/jfr.jar && \
-    rm -rf /jre/lib/jfr && \
-    rm -rf /jre/lib/oblique-fonts
+RUN tar -xzf jdk-8u191-linux-x64.tar.gz && \
+    \rm -f jdk-8u191-linux-x64.tar.gz* && \
+    \mv -f jdk1.8.0_191/jre /usr/local/jre && \
+    \rm -rf jdk1.8.0_191
 
 #安装 glibc
 RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub && \
@@ -41,7 +28,7 @@ RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/s
 
 RUN rm -rf /tmp/* /var/cache/apk/*
 
-ENV JAVA_HOME /usr/local/jdk1.8.0_191
+ENV JAVA_HOME /usr/local/jre
 ENV PATH $PATH:$JAVA_HOME/bin
 
 CMD ["sh"]
