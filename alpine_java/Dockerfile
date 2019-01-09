@@ -1,5 +1,5 @@
 
-FROM docker:edge
+FROM alpine
 
 MAINTAINER Mr.Fan fzm@synron.cn
 
@@ -7,9 +7,8 @@ WORKDIR /opt
 
 RUN apk update && apk upgrade
 
-RUN apk add --no-cache ca-certificates tzdata
-    apk del ca-certificates && \
-    rm -rf /tmp/* /var/cache/apk/*
+RUN apk add --no-cache ca-certificates tzdata && \
+    apk del ca-certificates
 
 #解决时区错乱的问题
 RUN cp -rf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
