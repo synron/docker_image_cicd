@@ -25,8 +25,9 @@ RUN MS_URL=https://raw.githubusercontent.com/synron/docker_images/master/setting
     wget -q -O ~/.m2/settings.xml ${MS_URL}
 
 #安装 java
-RUN wget -q --header "Cookie: oraclelicense=accept-securebackup-cookie" https://download.oracle.com/otn-pub/java/jdk/8u191-b12/2787e4a523244c269598db4e85c51e0c/jdk-8u191-linux-x64.tar.gz
-RUN tar -xzf jdk-8u191-linux-x64.tar.gz -C /usr/local/ && \
+RUN wget -q --header "Cookie: oraclelicense=accept-securebackup-cookie" \
+    https://download.oracle.com/otn-pub/java/jdk/8u191-b12/2787e4a523244c269598db4e85c51e0c/jdk-8u191-linux-x64.tar.gz && \
+    tar -xzf jdk-8u191-linux-x64.tar.gz -C /usr/local/ && \
     rm -rf jdk-8u191-linux-x64.tar.gz*
 
 #安装 glibc
