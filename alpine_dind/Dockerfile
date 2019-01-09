@@ -3,14 +3,12 @@ FROM docker:edge
 
 MAINTAINER Mr.Fan fzm@synron.cn
 
-VOLUME ["~/.m2/"]
 WORKDIR /opt
 
 RUN apk update
 
 RUN apk add --no-cache ca-certificates wget git vim \
     curl bash tree tzdata unzip
-RUN mkdir -p /opt && cd /opt && mkdir -p ~/.m2
 
 #解决时区错乱的问题
 RUN cp -rf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
