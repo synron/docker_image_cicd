@@ -25,9 +25,8 @@ RUN tar -xzf jdk-8u191-linux-x64.tar.gz && \
     \rm -rf jdk-8u191-linux-x64.tar.gz* && \
     \mv -f jdk1.8.0_191/ /usr/local/jdk && \
     cd /usr/local/jdk && \
-    \rm -rf jre && \
-    \rm -rf lib/amd64/libjfxwebkit.so && \
-    \rm -rf lib/ext/jfxrt.jar
+    \rm -rf jre/lib/amd64/libjfxwebkit.so && \
+    \rm -rf jre/lib/ext/jfxrt.jar
 
 RUN rm -rf /tmp/* /var/cache/apk/*
 
