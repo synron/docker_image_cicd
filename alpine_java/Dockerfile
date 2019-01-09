@@ -24,7 +24,7 @@ RUN wget -q --header "Cookie: oraclelicense=accept-securebackup-cookie" https://
 RUN tar -xzf jdk-8u191-linux-x64.tar.gz && \
     \rm -rf jdk-8u191-linux-x64.tar.gz* && \
     \mv -f jdk1.8.0_191/jre /usr/local/jvm && \
-    \rm -rf jdk1.8.0_191
+    \rm -rf jdk1.8.0_191 && \
     cd /usr/local/jvm && \
     \rm -rf lib/amd64/libjfxwebkit.so && \
     \rm -rf lib/ext/jfxrt.jar
