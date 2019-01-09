@@ -42,7 +42,7 @@ ENV JAVA_HOME /usr/local/jdk1.8.0_191
 ENV MAVEN_HOME /usr/lib/maven
 ENV PATH $PATH:$JAVA_HOME/bin:$MAVEN_HOME/bin
 
-VOLUME ["/root/.m2/"]
+VOLUME ["~/.m2/"]
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["sh"]
