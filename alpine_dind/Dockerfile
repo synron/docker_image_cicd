@@ -21,23 +21,23 @@ RUN MAVEN_VERSION=3.5.4 && \
     tar -zxf apache-maven-$MAVEN_VERSION-bin.tar.gz && \
     rm apache-maven-$MAVEN_VERSION-bin.tar.gz && \
     mv apache-maven-$MAVEN_VERSION /usr/lib/maven
-RUN MS_URL=https://raw.githubusercontent.com/synron/docker_image_cicd/master/settings.xml && \
+RUN MS_URL=https://raw.githubusercontent.com/synron/docker_images/master/settings.xml && \
     wget -q -O ~/.m2/settings.xml ${MS_URL}
 
 #安装 java
 RUN wget -q --header "Cookie: oraclelicense=accept-securebackup-cookie" https://download.oracle.com/otn-pub/java/jdk/8u191-b12/2787e4a523244c269598db4e85c51e0c/jdk-8u191-linux-x64.tar.gz
 RUN tar -xzf jdk-8u191-linux-x64.tar.gz -C /usr/local/ && \
-    rm -f jdk-8u191-linux-x64.tar.gz* && rm -f /usr/local/jdk1.8.0_191/jre
+    rm -rf jdk-8u191-linux-x64.tar.gz* && rm -rf /usr/local/jdk1.8.0_191/jre
 
 #安装 glibc
 RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub && \
     wget -q https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.28-r0/glibc-2.28-r0.apk && \
-    apk add glibc-2.28-r0.apk && \
-    rm -f glibc-2.28-r0.apk*
-    
+    apk add glibc-2.28-r0.apk && rm -rf glibc-2.28-r0.apk*
+
+RUN rm -rf /tmp/* /var/cache/apk/*
+
 RUN mkdir -p /etc/docker && \
     echo '{ "registry-mirrors" : [ "https://migmfoxa.mirror.aliyuncs.com" ] }' > /etc/docker/daemon.json;
-
 
 ENV JAVA_HOME /usr/local/jdk1.8.0_191
 ENV MAVEN_HOME /usr/lib/maven
