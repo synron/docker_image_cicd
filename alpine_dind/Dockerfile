@@ -22,7 +22,7 @@ RUN MAVEN_VERSION=3.5.4 && \
     rm apache-maven-$MAVEN_VERSION-bin.tar.gz && \
     mv apache-maven-$MAVEN_VERSION /usr/lib/maven
 RUN MS_URL=https://raw.githubusercontent.com/synron/docker_images/master/settings.xml && \
-    wget -q -O ~/.m2/settings.xml ${MS_URL}
+    mkdir -p ~/.m2/ && wget -q -O ~/.m2/settings.xml ${MS_URL}
 
 #安装 java
 RUN wget -q --header "Cookie: oraclelicense=accept-securebackup-cookie" \
