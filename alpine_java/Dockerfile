@@ -5,9 +5,11 @@ MAINTAINER Mr.Fan fzm@synron.cn
 
 WORKDIR /opt
 
+ENV LANG=C.UTF-8
+
 RUN [ ! -e /etc/nsswitch.conf ] && echo 'hosts: files dns' > /etc/nsswitch.conf
 
-# RUN apk update && apk upgrade
+RUN apk update && apk upgrade
 
 RUN apk add --no-cache ca-certificates tzdata git
 
