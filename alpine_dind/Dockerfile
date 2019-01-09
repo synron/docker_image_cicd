@@ -3,6 +3,7 @@ FROM docker:edge
 
 MAINTAINER Mr.Fan fzm@synron.cn
 
+VOLUME ["~/.m2/"]
 WORKDIR /opt
 
 RUN apk update
@@ -41,8 +42,6 @@ RUN mkdir -p /etc/docker && \
 ENV JAVA_HOME /usr/local/jdk1.8.0_191
 ENV MAVEN_HOME /usr/lib/maven
 ENV PATH $PATH:$JAVA_HOME/bin:$MAVEN_HOME/bin
-
-VOLUME ["~/.m2/"]
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["sh"]
