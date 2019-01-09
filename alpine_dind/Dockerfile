@@ -13,7 +13,7 @@ RUN mkdir -p /opt && cd /opt && mkdir -p ~/.m2
 
 #解决时区错乱的问题
 RUN cp -rf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-    
+
 #安装Maven
 RUN MAVEN_VERSION=3.5.4 && \
     wget -q http://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz && \
@@ -26,7 +26,7 @@ RUN MS_URL=https://raw.githubusercontent.com/synron/docker_image_cicd/master/set
 #安装 java
 RUN wget -q --header "Cookie: oraclelicense=accept-securebackup-cookie" https://download.oracle.com/otn-pub/java/jdk/8u191-b12/2787e4a523244c269598db4e85c51e0c/jdk-8u191-linux-x64.tar.gz
 RUN tar -xzf jdk-8u191-linux-x64.tar.gz -C /usr/local/ && \
-    rm -f jdk-8u191-linux-x64.tar.gz*
+    rm -f jdk-8u191-linux-x64.tar.gz* && rm -f /usr/local/jdk1.8.0_191/jre
 
 #安装 glibc
 RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub && \
