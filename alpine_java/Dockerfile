@@ -18,7 +18,10 @@ RUN wget -q --header "Cookie: oraclelicense=accept-securebackup-cookie" https://
 RUN tar -xzf jdk-8u191-linux-x64.tar.gz && \
     \rm -f jdk-8u191-linux-x64.tar.gz* && \
     \mv -f jdk1.8.0_191/jre /usr/local/jre && \
-    \rm -rf jdk1.8.0_191
+    \rm -rf jdk1.8.0_191 && \
+    cd /usr/local/jre && \
+    \rm -f lib/amd64/libjfxwebkit.so && \
+    \rm -f lib/ext/jfxrt.jar
 
 #安装 glibc
 RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub && \
