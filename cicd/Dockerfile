@@ -3,15 +3,11 @@ FROM maven:3-jdk-8
 MAINTAINER Mr.Fan fzm@synron.cn
 
 WORKDIR /opt/
-
-RUN curl -O https://get.docker.com/builds/Linux/x86_64/docker-latest.tgz \
-    && tar zxvf docker-latest.tgz \
-    && \cp -rf docker/docker /usr/local/bin/ \
-    && \rm -rf docker docker-latest.tgz
     
 RUN apt-get update -y && \
     apt-get install -y git wget vim tree unzip tar && \
     apt-get install -y lib32stdc++6 lib32z1 && \
+    apt-get clean && \
     mkdir -p ~/.m2/ mkdir -p ~/.gradle && mkdir -p ~/.android
     
 RUN ANDROID_COMPILE_SDK="28" && \
