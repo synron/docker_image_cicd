@@ -27,7 +27,7 @@ RUN MS_URL=https://raw.githubusercontent.com/synron/docker_images/master/setting
 #安装 java
 RUN wget -q --header "Cookie: oraclelicense=accept-securebackup-cookie" https://download.oracle.com/otn-pub/java/jdk/8u191-b12/2787e4a523244c269598db4e85c51e0c/jdk-8u191-linux-x64.tar.gz
 RUN tar -xzf jdk-8u191-linux-x64.tar.gz -C /usr/local/ && \
-    rm -rf jdk-8u191-linux-x64.tar.gz* && rm -rf /usr/local/jdk1.8.0_191/jre
+    rm -rf jdk-8u191-linux-x64.tar.gz*
 
 #安装 glibc
 RUN wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub && \
