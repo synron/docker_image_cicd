@@ -1,5 +1,5 @@
 
-FROM alpine
+FROM alpine:edge
 
 MAINTAINER Mr.Fan fzm@synron.cn
 
