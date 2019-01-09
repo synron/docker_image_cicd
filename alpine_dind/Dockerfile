@@ -5,7 +5,9 @@ MAINTAINER Mr.Fan fzm@synron.cn
 
 WORKDIR /opt
 
-RUN apk update
+ENV LANG=C.UTF-8
+
+RUN apk update && apk upgrade
 
 RUN apk add --no-cache ca-certificates wget git vim \
     curl bash tree tzdata unzip
