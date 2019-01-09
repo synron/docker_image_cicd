@@ -1,13 +1,15 @@
 
-FROM alpine:edge
+FROM alpine:3.8
 
 MAINTAINER Mr.Fan fzm@synron.cn
 
 WORKDIR /opt
 
-RUN apk update && apk upgrade
+RUN [ ! -e /etc/nsswitch.conf ] && echo 'hosts: files dns' > /etc/nsswitch.conf
 
-RUN apk add --no-cache ca-certificates tzdata && \
+# RUN apk update && apk upgrade
+
+RUN apk add --no-cache ca-certificates bash tzdata && \
     apk del ca-certificates
 
 #解决时区错乱的问题
