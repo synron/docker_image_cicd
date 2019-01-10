@@ -5,7 +5,7 @@ MAINTAINER Mr.Fan fzm@synron.cn
 #Init
 WORKDIR /opt/
 
-RUN yum update -y && yum install git vim wget unzip tree tar && \
+RUN yum update -y && yum install -y git vim wget unzip tree tar && \
   yum install -y lib32stdc++6 lib32z1 && \
   mkdir -p ~/.m2/ ~/.gradle ~/.android
 
@@ -17,7 +17,7 @@ ENV JAVA_HOME /usr/local/jdk
 ENV MAVEN_HOME /usr/lib/maven
 ENV ANDROID_HOME /opt/android-sdk-linux
 ENV PATH $PATH:$JAVA_HOME/bin:$MAVEN_HOME/bin:${ANDROID_HOME}/platform-tools/
-
+ENV DOCKER_HOST tcp://docker:2375
 # Local
 
 ENV LC_ALL zh_CN.utf8 #设置环境变量 
@@ -42,7 +42,7 @@ RUN DOCKER_CHANNEL=stable && \
     wget -q -O modprobe.sh https://raw.githubusercontent.com/synron/docker_images/master/dind_ide/modprobe.sh && \
     wget -q -O dockerd.sh  https://raw.githubusercontent.com/synron/docker_images/master/dind_ide/dockerd.sh && \
     chmod +x modprobe.sh && \
-    chmod +x docker-entrypoint.sh && \
+    chmod +x dockerd.sh && \
     \cp -rf modprobe.sh /usr/local/bin/modprobe && \
     \cp -rf dockerd.sh /usr/local/bin/ && \
     echo "dockerd.sh" > ~/.bashrc && \
