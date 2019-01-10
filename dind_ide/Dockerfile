@@ -18,6 +18,16 @@ ENV MAVEN_HOME /usr/lib/maven
 ENV ANDROID_HOME /opt/android-sdk-linux
 ENV PATH $PATH:$JAVA_HOME/bin:$MAVEN_HOME/bin:${ANDROID_HOME}/platform-tools/
 
+# Local
+
+ENV LC_ALL zh_CN.utf8 #设置环境变量 
+RUN rm -rf /etc/localtime && \
+    ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+    yum -y install kde-l10n-Chinese && \
+    yum -y reinstall glibc-common && \
+    localedef -c -f UTF-8 -i zh_CN zh_CN.utf8 && \
+    yum groupinstall -y "fonts"
+   
 # Docker
 
 RUN DOCKER_CHANNEL=stable && \
@@ -49,9 +59,11 @@ RUN RUN wget -q --header "Cookie: oraclelicense=accept-securebackup-cookie" \
     
 # Maven
 RUN MAVEN_VERSION=3.5.4 && \
+    MS_URL=https://raw.githubusercontent.com/synron/docker_images/master/settings.xml && \
+    wget -q -O ~/.m2/settings.xml ${MS_URL} && \
     wget -q http://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz && \
     tar -zxf apache-maven-$MAVEN_VERSION-bin.tar.gz && \
-    \mv -f apache-maven-$MAVEN_VERSION /usr/lib/maven
+    \mv -f apache-maven-$MAVEN_VERSION /usr/lib/maven && \
     \rm -rf *
 RUN MS_URL=https://raw.githubusercontent.com/synron/docker_images/master/settings.xml && \
     mkdir -p ~/.m2/ && wget -q -O ~/.m2/settings.xml ${MS_URL}
@@ -61,11 +73,9 @@ RUN MS_URL=https://raw.githubusercontent.com/synron/docker_images/master/setting
 RUN ANDROID_COMPILE_SDK="28" && \
     ANDROID_BUILD_TOOLS="28.0.2" && \
     ANDROID_SDK_TOOLS="4333796" && \
-    MS_URL=https://raw.githubusercontent.com/synron/docker_image_cicd/master/settings.xml && \
-    wget --output-document=settings.xml ${MS_URL} && \mv -f settings.xml ~/.m2/ && \
     URL_ANDROID_SDK=https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_TOOLS}.zip && \
-    wget --output-document=android-sdk.zip ${URL_ANDROID_SDK} && \
-    unzip -d android-sdk-linux android-sdk.zip && \rm -rf android-sdk.zip && \
+    wget -q -O android-sdk.zip ${URL_ANDROID_SDK} && \
+    unzip -q -d android-sdk-linux android-sdk.zip && \rm -rf android-sdk.zip && \
     echo y | android-sdk-linux/tools/bin/sdkmanager "platforms;android-${ANDROID_COMPILE_SDK}" >/dev/null && \
     echo y | android-sdk-linux/tools/bin/sdkmanager "platform-tools" >/dev/null && \
     echo y | android-sdk-linux/tools/bin/sdkmanager "build-tools;${ANDROID_BUILD_TOOLS}" >/dev/null && \
