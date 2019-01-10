@@ -6,8 +6,8 @@ MAINTAINER Mr.Fan fzm@synron.cn
 WORKDIR /opt/
 
 RUN yum update -y && yum install -y git vim wget unzip tree tar && \
-  yum install -y lib32stdc++6 lib32z1 && \
-  mkdir -p ~/.m2/ ~/.gradle ~/.android
+    yum install -y zlib-1.2.7-17.el7.i686 glibc.i686 libstdc++.so.6 && \
+    mkdir -p ~/.m2/ ~/.gradle ~/.android
 
 [ ! -e /etc/nsswitch.conf ] && echo 'hosts: files dns' > /etc/nsswitch.conf
 
@@ -49,6 +49,7 @@ RUN mkdir -p /etc/docker && \
 RUN wget -q --header "Cookie: oraclelicense=accept-securebackup-cookie" \
     https://download.oracle.com/otn-pub/java/jdk/8u191-b12/2787e4a523244c269598db4e85c51e0c/jdk-8u191-linux-x64.tar.gz && \
     tar -xzf jdk-8u191-linux-x64.tar.gz -C /usr/local/ && \
+    \mv -f /usr/local/jdk1.8.0_191 /usr/local/jdk && \
     \rm -rf *
     
 # Maven
