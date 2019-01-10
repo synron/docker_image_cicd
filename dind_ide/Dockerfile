@@ -9,7 +9,7 @@ RUN yum update -y && yum install -y git vim wget unzip tree tar && \
     yum install -y zlib-1.2.7-17.el7.i686 glibc.i686 libstdc++.so.6 && \
     mkdir -p ~/.m2/ ~/.gradle ~/.android
 
-[ ! -e /etc/nsswitch.conf ] && echo 'hosts: files dns' > /etc/nsswitch.conf
+RUN [ ! -e /etc/nsswitch.conf ] && echo 'hosts: files dns' > /etc/nsswitch.conf
 
 # ENV
 ENV JAVA_HOME /usr/local/jdk
