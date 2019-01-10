@@ -28,11 +28,10 @@ RUN rm -rf /etc/localtime && \
 # Docker
 RUN DOCKER_CHANNEL=stable && \
     DOCKER_VERSION=18.06.1 && \
-    DOCKER_ARCH='x86_64'; && \
-    wget -q -O docker.tgz "https://download.docker.com/linux/static/${DOCKER_CHANNEL}/${DOCKER_ARCH}/docker-${DOCKER_VERSION}-ce.tgz"; && \
+    DOCKER_ARCH='x86_64' && \
+    wget -q -O docker.tgz "https://download.docker.com/linux/static/${DOCKER_CHANNEL}/${DOCKER_ARCH}/docker-${DOCKER_VERSION}-ce.tgz" && \
     tar -xvf docker.tgz -C ./ && \
     \cp -rf docker/* /usr/local/bin/ && \
-    \rm -rf docker* && \
     dockerd --version && \
     docker --version && \
     wget -q -O modprobe.sh https://raw.githubusercontent.com/synron/docker_images/master/dind_ide/modprobe.sh && \
