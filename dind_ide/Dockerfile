@@ -74,4 +74,4 @@ RUN ANDROID_COMPILE_SDK="28" && \
  
 
 # Complete
-ENTRYPOINT ["sh"]
+CMD ["/usr/bin/bash"]
