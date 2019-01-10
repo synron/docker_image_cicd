@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM centos
 
 MAINTAINER Mr.Fan fzm@synron.cn
 
