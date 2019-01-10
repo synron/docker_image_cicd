@@ -75,4 +75,4 @@ RUN ANDROID_COMPILE_SDK="28" && \
 
 # Complete
 
-ENTRYPOINT ["bash"]
+ENTRYPOINT ["/usr/sbin/init"]
