@@ -35,25 +35,24 @@ RUN DOCKER_CHANNEL=stable && \
     chmod +x docker-entrypoint.sh && \
     \cp -rf modprobe.sh /usr/local/bin/modprobe && \
     \cp -rf dockerd.sh /usr/local/bin/ && \
-    \rm -rf * && \
-    echo "dockerd.sh" > ~/.bashrc
+    echo "dockerd.sh" > ~/.bashrc && \
+    \rm -rf *
 
 RUN mkdir -p /etc/docker && \
     echo '{ "registry-mirrors" : [ "https://migmfoxa.mirror.aliyuncs.com" ] }' > /etc/docker/daemon.json;
     
 # Java
-RUN wget -q -O jdk8.rpm --no-check-certificate --no-cookies \
-    --header "Cookie: oraclelicense=accept-securebackup-cookie"  \
-    http://download.oracle.com/otn-pub/java/jdk/8u191-b12/2787e4a523244c269598db4e85c51e0c/jdk-8u191-linux-x64.rpm && \
-    yum install -y jdk8.rpm && \rm -rf * && \
-    java -version
+RUN RUN wget -q --header "Cookie: oraclelicense=accept-securebackup-cookie" \
+    https://download.oracle.com/otn-pub/java/jdk/8u191-b12/2787e4a523244c269598db4e85c51e0c/jdk-8u191-linux-x64.tar.gz && \
+    tar -xzf jdk-8u191-linux-x64.tar.gz -C /usr/local/ && \
+    \rm -rf *
     
 # Maven
 RUN MAVEN_VERSION=3.5.4 && \
     wget -q http://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz && \
     tar -zxf apache-maven-$MAVEN_VERSION-bin.tar.gz && \
     \mv -f apache-maven-$MAVEN_VERSION /usr/lib/maven
-    \rm -rf * && \
+    \rm -rf *
 RUN MS_URL=https://raw.githubusercontent.com/synron/docker_images/master/settings.xml && \
     mkdir -p ~/.m2/ && wget -q -O ~/.m2/settings.xml ${MS_URL}
     
