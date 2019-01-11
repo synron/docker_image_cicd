@@ -72,6 +72,23 @@ RUN ANDROID_COMPILE_SDK="28" && \
     echo y | android-sdk-linux/tools/bin/sdkmanager "build-tools;${ANDROID_BUILD_TOOLS}" >/dev/null && \
     yes | android-sdk-linux/tools/bin/sdkmanager --licenses
  
+ # NodeJs && NPM && YARN
+RUN REGISTRY=http://registry.npm.taobao.org/ && \
+    PREFIX=/cache/.node/prefix/ && \
+    CACHE=/cache/.node/cache/ && \
+    mkdir -p ${PREFIX} ${CACHE} && \
+    echo "" > ~/.npmrc && \
+    echo "registry=${REGISTRY}" >> ~/.npmrc && \
+    echo "prefix=${PREFIX}" >> ~/.npmrc && \
+    echo "cache=${CACHE}" >> ~/.npmrc && \
+    curl -sL https://rpm.nodesource.com/setup_11.x | bash - && \
+    yum install -y nodejs && \
+    node -v && \
+    wget https://dl.yarnpkg.com/rpm/yarn.repo -O /etc/yum.repos.d/yarn.repo && \
+    yum install -y yarn && \
+    yarn -v && \
+    yum clean all
+    
 
 # Complete
 CMD ["/usr/bin/bash"]
