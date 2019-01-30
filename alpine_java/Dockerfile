@@ -38,12 +38,12 @@ RUN /usr/glibc-compat/bin/localedef --force --inputfile POSIX --charmap UTF-8 "$
         
 #安装 java
 RUN wget -q --header "Cookie: oraclelicense=accept-securebackup-cookie" \
-    https://download.oracle.com/otn-pub/java/jdk/8u191-b12/2787e4a523244c269598db4e85c51e0c/jdk-8u191-linux-x64.tar.gz && \
-    tar -xzf jdk-8u191-linux-x64.tar.gz && \
-    \rm -rf jdk-8u191-linux-x64.tar.gz* && \
+    https://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/jdk-8u201-linux-x64.tar.gz && \
+    tar -xzf jdk-8u201-linux-x64.tar.gz && \
+    \rm -rf jdk-8u201-linux-x64.tar.gz* && \
 #     \mv -f jdk1.8.0_191 /usr/local/jvm
-    \mv -f jdk1.8.0_191/jre /usr/local/jvm && \
-    \rm -rf jdk1.8.0_191 && \
+    \mv -f jdk1.8.0_201/jre /usr/local/jvm && \
+    \rm -rf jdk1.8.0_201 && \
     cd /usr/local/jvm && \
     \rm -rf lib/amd64/libjfxwebkit.so && \
     \rm -rf lib/ext/jfxrt.jar
