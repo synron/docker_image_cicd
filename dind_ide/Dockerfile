@@ -63,7 +63,7 @@ RUN MS_URL=https://raw.githubusercontent.com/synron/docker_images/master/setting
     
 # Android
 RUN ANDROID_COMPILE_SDK="28" && \
-    ANDROID_BUILD_TOOLS="28.0.2" && \
+    ANDROID_BUILD_TOOLS="28.0.3" && \
     ANDROID_SDK_TOOLS="4333796" && \
     URL_ANDROID_SDK=https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_TOOLS}.zip && \
     wget -q -O android-sdk.zip ${URL_ANDROID_SDK} && \
