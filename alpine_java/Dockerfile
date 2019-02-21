@@ -11,7 +11,7 @@ RUN [ ! -e /etc/nsswitch.conf ] && echo 'hosts: files dns' > /etc/nsswitch.conf
 
 RUN apk update && apk upgrade
 
-RUN apk add --no-cache ca-certificates tzdata git
+RUN apk add --no-cache ca-certificates tzdata git yasm ffmpeg
 
 #解决时区错乱的问题
 RUN cp -rf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
