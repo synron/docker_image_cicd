@@ -7,7 +7,7 @@ WORKDIR /opt/
 
 RUN yum update -y && yum install -y git vim wget curl tree unzip tar && \
     yum install -y make && \
-    yum install -y zlib-1.2.7-17.el7.i686 glibc.i686 libstdc++.so.6 && \
+    yum install -y zlib-1.2.7-18.el7.i686 glibc.i686 libstdc++.so.6 && \
     mkdir -p ~/.m2/ ~/.gradle ~/.android
 
 # ENV
