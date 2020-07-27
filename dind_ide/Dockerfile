@@ -81,7 +81,7 @@ RUN REGISTRY=http://registry.npm.taobao.org/ && \
 # RUN yum install epel-release -y && \
 RUN    yum -y install https://download1.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm \
     && yum -y install http://rpmfind.net/linux/epel/7/x86_64/Packages/s/SDL2-2.0.10-1.el7.x86_64.rpm \
-    && yum -y install ffmpeg ffmpeg-devel \
+    && yum -y install ffmpeg \
     && ffmpeg -h
 
 # Complete
