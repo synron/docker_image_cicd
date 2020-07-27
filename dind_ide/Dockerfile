@@ -69,7 +69,7 @@ RUN REGISTRY=http://registry.npm.taobao.org/ && \
     echo "registry=${REGISTRY}" >> ~/.npmrc && \
     echo "prefix=${PREFIX}" >> ~/.npmrc && \
     echo "cache=${CACHE}" >> ~/.npmrc && \
-    curl -sL https://rpm.nodesource.com/setup_11.x | bash - && \
+    curl -sL https://rpm.nodesource.com/setup_14.x | bash - && \
     yum install -y nodejs && \
     node -v && \
     wget https://dl.yarnpkg.com/rpm/yarn.repo -O /etc/yum.repos.d/yarn.repo && \
