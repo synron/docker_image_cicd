@@ -60,7 +60,7 @@ RUN MAVEN_VERSION=3.5.4 && \
 RUN MS_URL=https://raw.githubusercontent.com/synron/docker_images/master/settings.xml && \
     mkdir -p ~/.m2/ && wget -q -O ~/.m2/settings.xml ${MS_URL}
  
- # NodeJs && NPM && YARN
+# NodeJs && NPM && YARN
 RUN REGISTRY=http://registry.npm.taobao.org/ && \
     PREFIX=/cache/.node/prefix/ && \
     CACHE=/cache/.node/cache/ && \
@@ -77,12 +77,12 @@ RUN REGISTRY=http://registry.npm.taobao.org/ && \
     yarn -v && \
     yum clean all
 
- # FFmpeg
-RUN yum install epel-release -y && \
-    rpm --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro && \
-    rpm -Uvh http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm && \
-    yum install ffmpeg ffmpeg-devel -y && \
-    ffmpeg -h
+# FFmpeg
+# RUN yum install epel-release -y && \
+RUN yum install https://download1.rpmfusion.org/free/el/rpmfusion-free-release-8.noarch.rpm \
+    && yum install http://rpmfind.net/linux/epel/7/x86_64/Packages/s/SDL2-2.0.10-1.el7.x86_64.rpm \
+    && yum -y install ffmpeg ffmpeg-devel \
+    && ffmpeg -h
 
 # Complete
 CMD ["/usr/bin/bash"]
