@@ -40,11 +40,15 @@ RUN mkdir -p /etc/docker && \
     echo '{ "registry-mirrors" : [ "https://migmfoxa.mirror.aliyuncs.com" ] }' > /etc/docker/daemon.json;
     
 # Java
-RUN wget -q --header "Cookie: oraclelicense=accept-securebackup-cookie" \
-    https://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/jdk-8u201-linux-x64.tar.gz && \
-    tar -xzf jdk-8u201-linux-x64.tar.gz -C /usr/local/ && \
-    \mv -f /usr/local/jdk1.8.0_201 /usr/local/jdk && \
-    \rm -rf *
+RUN cat <<'EOF' > /etc/yum.repos.d/adoptopenjdk.repo \
+    [AdoptOpenJDK] \
+    name=AdoptOpenJDK \
+    baseurl=http://adoptopenjdk.jfrog.io/adoptopenjdk/rpm/centos/$releasever/$basearch \
+    enabled=1 \
+    gpgcheck=1 \
+    gpgkey=https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public \
+    EOF \
+    && yum install adoptopenjdk-8-openj9
     
 # Maven
 RUN MAVEN_VERSION=3.5.4 && \
