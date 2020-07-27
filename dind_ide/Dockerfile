@@ -40,14 +40,12 @@ RUN mkdir -p /etc/docker && \
     echo '{ "registry-mirrors" : [ "https://migmfoxa.mirror.aliyuncs.com" ] }' > /etc/docker/daemon.json;
     
 # Java
-RUN cat <<'EOF' > /etc/yum.repos.d/adoptopenjdk.repo \
-    [AdoptOpenJDK] \
-    name=AdoptOpenJDK \
-    baseurl=http://adoptopenjdk.jfrog.io/adoptopenjdk/rpm/centos/$releasever/$basearch \
-    enabled=1 \
-    gpgcheck=1 \
-    gpgkey=https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public \
-    EOF \
+RUN echo '[AdoptOpenJDK]' >> /etc/yum.repos.d/adoptopenjdk.repo \
+    echo 'name=AdoptOpenJDK' >> /etc/yum.repos.d/adoptopenjdk.repo \
+    echo 'baseurl=http://adoptopenjdk.jfrog.io/adoptopenjdk/rpm/centos/$releasever/$basearch' >> /etc/yum.repos.d/adoptopenjdk.repo \
+    echo 'enabled=1' >> /etc/yum.repos.d/adoptopenjdk.repo \
+    echo 'gpgcheck=1' >> /etc/yum.repos.d/adoptopenjdk.repo \
+    echo 'gpgkey=https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public' >> /etc/yum.repos.d/adoptopenjdk.repo \
     && yum install adoptopenjdk-8-openj9
     
 # Maven
