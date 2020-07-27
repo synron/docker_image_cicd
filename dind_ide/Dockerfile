@@ -41,11 +41,11 @@ RUN mkdir -p /etc/docker && \
     
 # Java
 RUN echo '[AdoptOpenJDK]' >> /etc/yum.repos.d/adoptopenjdk.repo \
-    echo 'name=AdoptOpenJDK' >> /etc/yum.repos.d/adoptopenjdk.repo \
-    echo 'baseurl=http://adoptopenjdk.jfrog.io/adoptopenjdk/rpm/centos/$releasever/$basearch' >> /etc/yum.repos.d/adoptopenjdk.repo \
-    echo 'enabled=1' >> /etc/yum.repos.d/adoptopenjdk.repo \
-    echo 'gpgcheck=1' >> /etc/yum.repos.d/adoptopenjdk.repo \
-    echo 'gpgkey=https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public' >> /etc/yum.repos.d/adoptopenjdk.repo \
+    && echo 'name=AdoptOpenJDK' >> /etc/yum.repos.d/adoptopenjdk.repo \
+    && echo 'baseurl=http://adoptopenjdk.jfrog.io/adoptopenjdk/rpm/centos/$releasever/$basearch' >> /etc/yum.repos.d/adoptopenjdk.repo \
+    && echo 'enabled=1' >> /etc/yum.repos.d/adoptopenjdk.repo \
+    && echo 'gpgcheck=1' >> /etc/yum.repos.d/adoptopenjdk.repo \
+    && echo 'gpgkey=https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public' >> /etc/yum.repos.d/adoptopenjdk.repo \
     && yum install adoptopenjdk-8-openj9
     
 # Maven
