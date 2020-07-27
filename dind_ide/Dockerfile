@@ -46,7 +46,8 @@ RUN echo '[AdoptOpenJDK]' >> /etc/yum.repos.d/adoptopenjdk.repo \
     && echo 'enabled=1' >> /etc/yum.repos.d/adoptopenjdk.repo \
     && echo 'gpgcheck=1' >> /etc/yum.repos.d/adoptopenjdk.repo \
     && echo 'gpgkey=https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public' >> /etc/yum.repos.d/adoptopenjdk.repo \
-    && yum -y install adoptopenjdk-8-openj9
+    && yum -y install adoptopenjdk-8-openj9 \
+    && java -version
     
 # Maven
 RUN MAVEN_VERSION=3.5.4 && \
@@ -58,18 +59,6 @@ RUN MAVEN_VERSION=3.5.4 && \
     \rm -rf *
 RUN MS_URL=https://raw.githubusercontent.com/synron/docker_images/master/settings.xml && \
     mkdir -p ~/.m2/ && wget -q -O ~/.m2/settings.xml ${MS_URL}
-    
-# Android
-RUN ANDROID_COMPILE_SDK="28" && \
-    ANDROID_BUILD_TOOLS="28.0.3" && \
-    ANDROID_SDK_TOOLS="4333796" && \
-    URL_ANDROID_SDK=https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_TOOLS}.zip && \
-    wget -q -O android-sdk.zip ${URL_ANDROID_SDK} && \
-    unzip -q -o -d android-sdk-linux android-sdk.zip && \rm -rf android-sdk.zip && \
-    echo y | android-sdk-linux/tools/bin/sdkmanager "platforms;android-${ANDROID_COMPILE_SDK}" >/dev/null && \
-    echo y | android-sdk-linux/tools/bin/sdkmanager "platform-tools" >/dev/null && \
-    echo y | android-sdk-linux/tools/bin/sdkmanager "build-tools;${ANDROID_BUILD_TOOLS}" >/dev/null && \
-    yes | android-sdk-linux/tools/bin/sdkmanager --licenses
  
  # NodeJs && NPM && YARN
 RUN REGISTRY=http://registry.npm.taobao.org/ && \
