@@ -19,10 +19,7 @@ ENV PATH $PATH:$JAVA_HOME/bin:$MAVEN_HOME/bin:${ANDROID_HOME}/platform-tools/
 ENV DOCKER_HOST tcp://docker:2375
 
 # Local
-RUN rm -rf /etc/localtime && \
-    ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
-    yum -y reinstall glibc-common && \
-    localedef -c -f UTF-8 -i zh_CN zh_CN.utf8 && \
+RUN yum -y reinstall glibc-common && \
     yum groupinstall -y "fonts"
 
 # Docker
