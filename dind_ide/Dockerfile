@@ -61,15 +61,16 @@ RUN MS_URL=https://raw.githubusercontent.com/synron/docker_images/master/setting
     mkdir -p ~/.m2/ && wget -q -O ~/.m2/settings.xml ${MS_URL}
  
 # NodeJs && NPM && YARN
+# https://github.com/nodesource/distributions#rpminstall
 RUN REGISTRY=https://registry.npm.taobao.org/ && \
     PREFIX=/cache/.node/prefix/ && \
     CACHE=/cache/.node/cache/ && \
     mkdir -p ${PREFIX} ${CACHE} && \
-    echo "" > ~/.npmrc && \
     echo "registry=${REGISTRY}" >> ~/.npmrc && \
     echo "prefix=${PREFIX}" >> ~/.npmrc && \
     echo "cache=${CACHE}" >> ~/.npmrc && \
-    yum module install -y nodejs && \
+    curl -sL https://rpm.nodesource.com/setup_lts.x | bash - && \
+    yum install -y nodejs && \
     node -v && \
     wget https://dl.yarnpkg.com/rpm/yarn.repo -O /etc/yum.repos.d/yarn.repo && \
     yum install -y yarn && \
