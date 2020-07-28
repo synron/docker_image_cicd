@@ -71,7 +71,7 @@ RUN REGISTRY=https://registry.npm.taobao.org/ && \
     echo "cache=${CACHE}" >> ~/.npmrc && \
     yum module install -y nodejs && \
     node -v && \
-    npm install -g n && n stable && \
+    npm install -g n && ${PREFIX}/n stable && \
     wget https://dl.yarnpkg.com/rpm/yarn.repo -O /etc/yum.repos.d/yarn.repo && \
     yum install -y yarn && \
     yarn -v && \
