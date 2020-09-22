@@ -18,7 +18,7 @@ ENV DOCKER_HOST tcp://docker:2375
 
 # Docker
 RUN DOCKER_CHANNEL=stable && \
-    DOCKER_VERSION=18.06.1 && \
+    DOCKER_VERSION=18.09.8 && \
     DOCKER_ARCH='x86_64' && \
     wget -q -O docker.tgz "https://download.docker.com/linux/static/${DOCKER_CHANNEL}/${DOCKER_ARCH}/docker-${DOCKER_VERSION}-ce.tgz" && \
     tar -xvf docker.tgz -C ./ && \
@@ -55,11 +55,9 @@ RUN MAVEN_VERSION=3.5.4 && \
  
 # NodeJs && NPM && YARN
 # https://github.com/nodesource/distributions#rpminstall
-RUN REGISTRY=https://registry.npm.taobao.org/ && \
-    PREFIX=/cache/.node/prefix/ && \
+RUN PREFIX=/cache/.node/prefix/ && \
     CACHE=/cache/.node/cache/ && \
     mkdir -p ${PREFIX} ${CACHE} && \
-    echo "registry=${REGISTRY}" >> ~/.npmrc && \
     echo "prefix=${PREFIX}" >> ~/.npmrc && \
     echo "cache=${CACHE}" >> ~/.npmrc && \
     curl -sL https://rpm.nodesource.com/setup_current.x | bash - && \
