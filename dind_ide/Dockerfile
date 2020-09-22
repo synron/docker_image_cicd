@@ -18,7 +18,7 @@ ENV DOCKER_HOST tcp://docker:2375
 
 # Docker
 RUN DOCKER_CHANNEL=stable && \
-    DOCKER_VERSION=18.09.8 && \
+    DOCKER_VERSION=18.06.3 && \
     DOCKER_ARCH='x86_64' && \
     wget -q -O docker.tgz "https://download.docker.com/linux/static/${DOCKER_CHANNEL}/${DOCKER_ARCH}/docker-${DOCKER_VERSION}-ce.tgz" && \
     tar -xvf docker.tgz -C ./ && \
